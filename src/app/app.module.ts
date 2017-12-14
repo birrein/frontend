@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatCardModule,
@@ -8,17 +9,33 @@ import {
   MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
-
 import { AppComponent } from './app.component';
 import { MessagesComponent } from './messages.component';
 import { WebService } from './web.service';
 import { HttpModule } from '@angular/http';
 import { NewMessageComponent } from './new-message.component';
 import { FormsModule } from '@angular/forms';
+import { NavComponent } from './nav.component';
+import { HomeComponent } from './home.component';
+
+var routes = [
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'messages',
+    component: MessagesComponent
+  },
+  {
+    path: 'messages/:name',
+    component: MessagesComponent
+  }
+];
 
 @NgModule({
   declarations: [
-    AppComponent, MessagesComponent, NewMessageComponent
+    AppComponent, MessagesComponent, NewMessageComponent, NavComponent, HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +46,8 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatToolbarModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [WebService],
   bootstrap: [AppComponent]

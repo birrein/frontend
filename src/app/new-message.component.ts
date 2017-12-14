@@ -22,6 +22,7 @@ import { WebService } from './web.service'
     `
 })
 export class NewMessageComponent {
+
     constructor(private webService: WebService) {}
 
     message = {
@@ -30,6 +31,6 @@ export class NewMessageComponent {
     };
 
     post() {
-        console.log(this.message);
+        this.webService.postMessage(this.message);
     }
 }
