@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class WebService {
-    BASE_URL = 'http://localhost:5000/api';
+    BASE_URL = 'http://localhost:55556/api';
 
     messages = [];
 
@@ -13,13 +13,13 @@ export class WebService {
         this.getMessages();
     }
 
-    async getMessages() {
-        try {
-            var response = await this.http.get(this.BASE_URL+'/messages').toPromise();
+    getMessages(user) {
+        user = (user) ? '/' + user : '';
+        this.http.get(this.BASE_URL + '/messages' + user).subscribe(response => {
             this.messages = response.json();
-        } catch (error) {
+        }, error => {
             this.handleError("Unable to get messages");
-        }
+        });
     }
 
     async postMessage(message) {
@@ -27,6 +27,7 @@ export class WebService {
             var response = await this.http.post(this.BASE_URL+'/messages', message).toPromise();
             this.messages.push(response.json());
         } catch (error) {
+            console.log(error);
             this.handleError("Unable to post message");
         }
     }
