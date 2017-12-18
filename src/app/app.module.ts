@@ -14,9 +14,10 @@ import { MessagesComponent } from './messages.component';
 import { WebService } from './web.service';
 import { HttpModule } from '@angular/http';
 import { NewMessageComponent } from './new-message.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav.component';
 import { HomeComponent } from './home.component';
+import { RegisterComponent } from './register.component';
 
 var routes = [
   {
@@ -30,12 +31,16 @@ var routes = [
   {
     path: 'messages/:name',
     component: MessagesComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent, MessagesComponent, NewMessageComponent, NavComponent, HomeComponent
+    AppComponent, MessagesComponent, NewMessageComponent, NavComponent, HomeComponent, RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ var routes = [
     MatToolbarModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [WebService],
