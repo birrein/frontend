@@ -29,17 +29,16 @@ export class WebService {
 
     async postMessage(message) {
         try {
-            var response = await this.http.post(this.BASE_URL+'/messages', message).toPromise();
+            var response = await this.http.post(this.BASE_URL + '/messages', message).toPromise();
             this.messagesStore.push(response.json());
             this.messageSubject.next(this.messagesStore);
         } catch (error) {
-            console.log(error);
             this.handleError("Unable to post message");
         }
     }
 
     getUser() {
-        return this.http.get(this.BASE_URL + 'users/me', this.auth.tokenHeader).map(res => res.json());
+        return this.http.get(this.BASE_URL + '/users/me', this.auth.tokenHeader).map(res => res.json());
     }
 
     private handleError(error) {
