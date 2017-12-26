@@ -32,6 +32,8 @@ export class UserComponent {
     }
 
     saveUser(userData) {
-        this.webService.saveUser(userData).subscribe();
+        this.webService.saveUser(userData).subscribe(u => {
+            localStorage.setItem('name', u.firstName);
+        });
     }
 }
